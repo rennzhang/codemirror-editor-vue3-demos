@@ -12,7 +12,7 @@
   />
 </template>
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent,ExtractPropTypes } from "vue";
 import { MergeView } from "codemirror/addon/merge/merge";
 import { Editor, EditorSelectionChange } from "codemirror";
 import Codemirror from "codemirror-editor-vue3";

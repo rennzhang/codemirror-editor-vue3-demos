@@ -5,6 +5,7 @@
     border
     :height="200"
     :placeholder="cmPlaceholder"
+    @change="onChange"
   >
   </Codemirror>
 </template>

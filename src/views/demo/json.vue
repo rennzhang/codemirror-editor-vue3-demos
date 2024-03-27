@@ -1,4 +1,24 @@
-{
+<template>
+  <Codemirror
+    :options="cmOptions"
+    :height="300"
+    class="cm-component"
+    @ready="onReady"
+    v-model:value="code"
+    :border="false"
+  />
+</template>
+<script lang="ts">
+import { ref, defineComponent, } from "vue";
+import { Editor, EditorSelectionChange } from "codemirror";
+import Codemirror from "codemirror-editor-vue3";
+
+export default defineComponent({
+  components: {
+    Codemirror,
+  },
+  setup() {
+    const code = ref(`{
   "name": "vue-project",
   "version": "0.0.0",
   "scripts": {
@@ -11,8 +31,8 @@
     "@codemirror/lang-javascript": "^0.19.7",
     "@codemirror/language": "^0.19.8",
     "ant-design-vue": "^3.0.0-alpha.14",
-    "codemirror": "^5.65.16",
-    "codemirror-editor-vue3": "2.4.1",
+    "codemirror": "^5.65.2",
+    "codemirror-editor-vue3": "2.4.0",
     "pinia": "^2.0.6",
     "vue": "^3.2.26",
     "vue-router": "^4.0.12",
@@ -33,4 +53,23 @@
     "vite-plugin-windicss": "^1.8.3",
     "vue-tsc": "latest"
   }
-}
+}`);
+
+    return {
+      code,
+      cmOptions: {
+        value: code.value,
+        mode: "application/json",
+        lineNumbers: true,
+        highlightDifferences: true,
+        theme: 'default',
+        lineWrapping: true,
+      },
+      onReady(cm: any) {
+        const cminstance: Editor = cm;
+        console.log(cminstance.getValue());
+      },
+    };
+  },
+});
+</script>
